@@ -20,7 +20,21 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```
+require 'tika-client'
+require "open-uri"
+require 'mini_mime'
+
+web_path = "web.html"
+ocr_path = "ocr.jpg"
+file = open(ocr_path)
+content_type = MiniMime.lookup_by_filename(file).content_type
+
+client = Tika::Client.new(host: "localhost", port: 9998)
+text = client.get_text(file: file, content_type: content_type)
+
+puts text
+```
 
 ## Contributing
 
